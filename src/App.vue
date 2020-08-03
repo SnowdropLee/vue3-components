@@ -4,8 +4,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { ref, provide } from "vue";
+
 export default {
   name: "App",
+  setup(props) {
+    const asideVisible = ref(false);
+    provide("asideVisible", asideVisible);
+  },
 };
 </script>

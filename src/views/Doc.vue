@@ -2,7 +2,7 @@
   <div>
     <Topnave />
     <div class="content">
-      <aside>
+      <aside v-if="asideVisible">
         <h2>组件列表</h2>
         <ul>
           <li>
@@ -25,9 +25,14 @@
 </template>
 <script lang="ts">
 import Topnave from "../components/Topnave.vue";
+import { inject, Ref } from "vue";
 export default {
   components: {
     Topnave,
+  },
+  setup(props) {
+    const asideVisible = inject<Ref<boolean>>("asideVisible");
+    return { asideVisible };
   },
 };
 </script>

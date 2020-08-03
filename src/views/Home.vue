@@ -13,7 +13,9 @@
 </template>
 <script lang="ts">
 import Topnave from "../components/Topnave.vue";
+
 export default {
+  
   components: {
     Topnave,
   },
