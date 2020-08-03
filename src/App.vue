@@ -1,17 +1,14 @@
 <template>
-  <Topnave />
-  <Home />
+  <div>
+    导航栏 |
+    <router-link to="/">topnave</router-link>|
+    <router-link to="/home">home</router-link>|
+  </div>
+  <router-view />
 </template>
 
 <script>
-import Home from "./components/Home.vue";
-import Topnave from "./components/Topnave.vue";
-
 export default {
   name: "App",
-  components: {
-    Home,
-    Topnave,
-  },
 };
 </script>
