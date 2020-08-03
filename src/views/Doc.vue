@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Topnave />
     <div class="topnav">
       <div class="logo"></div>
       <div class="menu"></div>
@@ -10,3 +11,11 @@
     </div>
   </div>
 </template>
+<script lang="ts">
+import Topnave from "../components/Topnave.vue";
+export default {
+  components: {
+    Topnave,
+  },
+};
+</script>
