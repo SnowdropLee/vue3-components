@@ -1,7 +1,7 @@
 <template>
   <template v-if="visible">
     <div>
-      <div class="aui-dialog-overlay"></div>
+      <div class="aui-dialog-overlay" @click="clickModal"></div>
       <div class="aui-dialog-wrapper">
         <div class="aui-dialog">
           <header>
@@ -30,12 +30,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    closeoverlay: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props, context) {
     const close = () => {
       context.emit("update:visible", false);
     };
-    return { close };
+    const clickModal = () => {
+      if (props.closeoverlay) {
+        close();
+      }
+    };
+    return { close, clickModal };
   },
 };
 </script>

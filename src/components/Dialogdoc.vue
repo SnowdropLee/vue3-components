@@ -1,7 +1,7 @@
 <template>
   <div>
     <Button @click="toggle">toggle</Button>
-    <Dialog v-model:visible="visible"></Dialog>
+    <Dialog v-model:visible="visible" :closeoverlay="false"></Dialog>
   </div>
 </template>
 <script lang="ts">
@@ -17,7 +17,6 @@ export default {
     const visible = ref(false);
     const toggle = () => {
       visible.value = !visible.value;
-
     };
     return { visible, toggle };
   },
