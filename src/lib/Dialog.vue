@@ -5,16 +5,15 @@
       <div class="aui-dialog-wrapper">
         <div class="aui-dialog">
           <header>
-            标题
+            <slot name="title">
             <span class="aui-dialog-close" @click="close"></span>
           </header>
           <main>
-            <p>第一行</p>
-            <p>二行</p>
+            <slot name="content">
           </main>
           <footer>
-            <Button>ok</Button>
-            <Button>cancle</Button>
+            <Button @click="ok">{{confirmtext}}</Button>
+            <Button @click="cancle">{{cancletext}}</Button>
           </footer>
         </div>
       </div>
@@ -34,6 +33,24 @@ export default {
       type: Boolean,
       default: true,
     },
+    okfunc: {
+      type: Function,
+    },
+    canclefunc: {
+      type: Function,
+    },
+    title:{
+      type:String,
+      default:'标题'
+    },
+    confirmtext:{
+      type:String,
+      default:"确定"
+    },
+    cancletext:{
+      type:String,
+      defalut:"取消"
+    }
   },
   setup(props, context) {
     const close = () => {
@@ -44,7 +61,18 @@ export default {
         close();
       }
     };
-    return { close, clickModal };
+    const ok = () => {
+      if (props.okfunc?.() !== false) {
+        close();
+      }
+    };
+    const cancle = () => {
+      if (props.canclefunc?.() !== false) {
+        close();
+      }
+    };
+
+    return { close, clickModal, ok, cancle };
   },
 };
 </script>

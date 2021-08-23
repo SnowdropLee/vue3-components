@@ -1,7 +1,22 @@
 <template>
   <div>
     <Button @click="toggle">toggle</Button>
-    <Dialog v-model:visible="visible" :closeoverlay="false"></Dialog>
+    <Dialog
+      v-model:visible="visible"
+      :closeoverlay="false"
+      :okfunc="okfunc"
+      :canclefunc="canclefunc"
+      confirmtext="ok"
+      cancletext="cancle"
+    >
+      <template v-slot:title>
+        <strong>我是标题</strong>
+      </template>
+      <template v-slot:content>
+        <h1>第一行</h1>
+        <h2>第二行</h2>
+      </template>
+    </Dialog>
   </div>
 </template>
 <script lang="ts">
@@ -18,7 +33,13 @@ export default {
     const toggle = () => {
       visible.value = !visible.value;
     };
-    return { visible, toggle };
+    const okfunc = () => {
+      return true;
+    };
+    const canclefunc = () => {
+      return true;
+    };
+    return { visible, toggle, okfunc, canclefunc};
   },
 };
 </script>
