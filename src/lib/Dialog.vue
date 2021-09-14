@@ -1,23 +1,25 @@
 <template>
   <template v-if="visible">
-    <div>
-      <div class="aui-dialog-overlay" @click="clickModal"></div>
-      <div class="aui-dialog-wrapper">
-        <div class="aui-dialog">
-          <header>
-            <slot name="title">
-            <span class="aui-dialog-close" @click="close"></span>
-          </header>
-          <main>
-            <slot name="content">
-          </main>
-          <footer>
-            <Button @click="ok">{{confirmtext}}</Button>
-            <Button @click="cancle">{{cancletext}}</Button>
-          </footer>
+    <teleport to="body">
+      <div>
+        <div class="aui-dialog-overlay" @click="clickModal"></div>
+        <div class="aui-dialog-wrapper">
+          <div class="aui-dialog">
+            <header>
+              <slot name="title" />
+              <span class="aui-dialog-close" @click="close"></span>
+            </header>
+            <main>
+              <slot name="content" />
+            </main>
+            <footer>
+              <Button @click="ok">{{ confirmtext }}</Button>
+              <Button @click="cancle">{{ cancletext }}</Button>
+            </footer>
+          </div>
         </div>
       </div>
-    </div>
+    </teleport>
   </template>
 </template>
 <script lang="ts">
@@ -39,18 +41,18 @@ export default {
     canclefunc: {
       type: Function,
     },
-    title:{
-      type:String,
-      default:'标题'
+    title: {
+      type: String,
+      default: "标题",
     },
-    confirmtext:{
-      type:String,
-      default:"确定"
+    cancletext: {
+      type: String,
+      defalut: "确定111",
     },
-    cancletext:{
-      type:String,
-      defalut:"取消"
-    }
+    confirmtext: {
+      type: String,
+      default: "确定",
+    },
   },
   setup(props, context) {
     const close = () => {
@@ -72,7 +74,7 @@ export default {
       }
     };
 
-    return { close, clickModal, ok, cancle };
+    return { close, clickModal, ok, cancle, props };
   },
 };
 </script>
